@@ -77,7 +77,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       messageTextController.clear();
                       _firestore.collection('messages').add({
                         'text': messageText,
-                        'sender': loggedInUser.email,
+                        'sender': loggedInUser?.email,
                       });
                     },
                     child: Text(
@@ -108,13 +108,13 @@ class MessagesStream extends StatelessWidget {
             ),
           );
         }
-        final messages = snapshot.data.documents.reversed;
+        final messages = snapshot.data?.documents.reversed;
         List<MessageBubble> messageBubbles = [];
         for (var message in messages) {
           final messageText = message.data['text'];
           final messageSender = message.data['sender'];
 
-          final currentUser = loggedInUser.email;
+          final currentUser = loggedInUser?.email;
 
           final messageBubble = MessageBubble(
             sender: messageSender,
@@ -137,7 +137,7 @@ class MessagesStream extends StatelessWidget {
 }
 
 class MessageBubble extends StatelessWidget {
-  MessageBubble({this.sender, this.text, this.isMe});
+  MessageBubble({ this.sender,  this.text,  this.isMe});
 
   final String sender;
   final String text;
