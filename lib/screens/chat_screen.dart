@@ -16,7 +16,7 @@ class _ChatScreenState extends State<ChatScreen> {
   final messageTextController = TextEditingController();
   final _auth = FirebaseAuth.instance;
 
-  String ?messageText;
+  String messageText;
 
   @override
   void initState() {
@@ -110,7 +110,7 @@ class MessagesStream extends StatelessWidget {
         }
         final messages = snapshot.data?.documents.reversed;
         List<MessageBubble> messageBubbles = [];
-        for (var message in messages!) {
+        for (var message in messages) {
           final messageText = message.data['text'];
           final messageSender = message.data['sender'];
 
@@ -137,7 +137,7 @@ class MessagesStream extends StatelessWidget {
 }
 
 class MessageBubble extends StatelessWidget {
-  MessageBubble({required this.sender, required this.text, required this.isMe});
+  MessageBubble({ this.sender,  this.text,  this.isMe});
 
   final String sender;
   final String text;

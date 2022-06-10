@@ -42,6 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 48.0,
               ),
               TextField(
+                key: Key('emailField'),
                 keyboardType: TextInputType.emailAddress,
                 textAlign: TextAlign.center,
                 onChanged: (value) {
@@ -54,6 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 height: 8.0,
               ),
               TextField(
+                key: Key('passwordField'),
                 obscureText: true,
                 textAlign: TextAlign.center,
                 onChanged: (value) {
@@ -67,6 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               RoundedButton(
                 title: 'Log In',
+                key: Key('LogIn'),
                 colour: Colors.lightBlueAccent,
                 onPressed: () async {
                   setState(() {
