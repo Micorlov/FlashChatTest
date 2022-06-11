@@ -16,26 +16,25 @@ void main() {
         (WidgetTester tester) async {
       await tester.pumpWidget(FlashChat());
 
-      // Input this text
-      final inputText = 'Hello there, this is an input.';
-      await tester.enterText(find.byKey(Key('your-text-field')), inputText);
+      await tester.pump(Duration(seconds: 5));
 
-      // Tap on a FAB
-      await tester.tap(find.byType(FloatingActionButton));
-      await tester.pumpAndSettle();
+      final LogIn = find.byKey(Key("LogIn"));
 
-      // We should be in the DisplayPage that displays the inputted text
+      await tester.tap(LogIn);
 
-      expect(find.text(inputText), findsOneWidget);
+      await tester.pump(Duration(seconds: 5));
 
-      // Tap on the back arrow in the AppBar
-      await tester.tap(find.byType(BackButton));
-      await tester.pumpAndSettle();
+      final emailField = find.byKey(Key("emailField"));
 
-      // We should be back in the TypingPage and the previously inputted text
-      // should be cleared out
+      await tester.tap(emailField);
 
-      expect(find.text(inputText), findsNothing);
+      await tester.enterText(emailField, "micorlov@gmail.com");
+
+      await tester.pump(Duration(seconds: 5));
+
+      expect(find.byKey(Key("emailField")), findsOneWidget);
+
+      print('---> done login test');
     },
   );
 
