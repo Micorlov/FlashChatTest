@@ -54,8 +54,7 @@ Future<void> loginTest() async {
 
       await tester.pump(Duration(seconds: 5));
 
-
-      //expect(find.byKey(LogIn), findsOneWidget);
+      expect(find.byKey(Key("emailField")), findsOneWidget);
 
       print('---> done login test');
 
